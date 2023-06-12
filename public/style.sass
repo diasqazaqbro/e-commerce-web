@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+body
+	font-family: 'Montserrat', sans-serif
+.title
+	font-size: 2rem
+	margin: 30px 0 20px
+	font-weight: normal
+	color: #8328CA
+.button
+	color: #8328CA
+header
+	background: #6ebaca4a
+	nav
+		display: flex
+		justify-content: space-evenly
+		position: relative
+
+		.link__nav
+			background-color: transparent
+			border: 0
+			color: #8328CA
+			text-decoration: none
+			cursor: pointer
+
+form.form input[type='text']
+	padding: 10px
+	font-size: 16px
+	width: 100%
+	background: rgba(137, 59, 199, 0.19)
+	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25)
+	border: none
+	border-radius: 35px
+	text-align: left
+	color: #8328CA
+
+/* Clear floats */
+form.form::after
+	content: ''
+	clear: both
+	display: table
+
+.welcome
+	padding: 100px 0
+	.box__first
+		background: #FFFFFF
+		border: 1px solid #1D1A1A
+		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
+		padding: 50px 25px
+		position: relative
+		left: 80px
+		top: 80px
+		z-index: 10
+		h1
+			font-weight: 400
+			font-size: 48px
+			letter-spacing: 0.07em
+			text-transform: uppercase
+			text-align: center
+			color: #8328CA
+		button
+			font-weight: 400
+			font-size: 32px
+			letter-spacing: 0.07em
+			text-transform: uppercase
+			text-align: center
+			color: #8328CA
+			background: rgba(110, 186, 202, 0.35)
+			border: 1px solid rgba(76, 37, 233, 0.35)
+			margin: 0 auto
+			display: block
+			padding: 15px 30px
+	.box__second
+		img
+			width: 100%
+			position: relative
+			z-index: 5
+			right: 80px
+
+.product__grid
+	display: grid
+	grid-template-columns: 1fr 1fr
+	gap: 20px
+	@media screen and (min-width: 768px)
+		grid-template-columns: 1fr 1fr 1fr 1fr
+.image__section
+	.big__image
+		max-width: 100%
+		max-height: 200px
+	.image
+		max-width: 100%
+		max-height: 100%
+	.image__buttons
+		display: flex
+		gap: 10px
+		flex-grow: 0
+		margin-top: 10px
+	.image__button
+		height: 40px
+		border: 2px solid #ccc
+		padding: 2px
+		cursor: pointer
+		border-radius: 5px
+	.big__image-wrapper
+		text-align: center
+
+.product__wrapper
+	.white__box
+		background-color: #fff
+		padding: 20px
+		height: 120px
+		text-align: center
+		display: flex
+		align-items: center
+		justify-content: center
+		border-radius: 10px
+		img
+			max-width: 100%
+			max-height: 80px
+		// link
+
+	.product__info
+		margin-top: 5px
+		.title
+			font-weight: normal
+			font-size: 0.9rem
+			color: inherit
+			text-decoration: none
+			margin: 0
+			// link
+		.price__row
+			display: block
+			@media screen and (min-width: 768px)
+				display: flex
+				gap: 5px
+				align-items: center
+				justify-content: space-between
+				margin-top: 2px
+		.price
+			font-size: 1rem
+			font-weight: 400
+			text-align: right
+			@media screen and (min-width: 768px)
+				font-size: 1.2rem
+				font-weight: 600
+				text-align: left
