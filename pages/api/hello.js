@@ -1,5 +1,12 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import { NextResponse } from 'next/server'
 
-export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+export const config = {
+	runtime: 'edge', // do this is a pre-requisite
+	regions: ['iad1'], // only execute this function on iad1
+}
+
+export default request => {
+	return NextResponse.json({
+		name: `Hello, from ${request.url} I'm now an Edge Function!`,
+	})
 }
