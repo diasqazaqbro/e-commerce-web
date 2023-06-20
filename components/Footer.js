@@ -133,12 +133,11 @@ export default function Footer() {
 						</div>
 						<div class='col-lg-6 col-sm-5 text-right'>
 							<p>
-								Made with in
 								<a
 									href='https://diasqazaqbro.github.io/cutaway/'
 									target='_blank'
 								>
-									diasqazaqbro
+									Made with in diasqazaqbro
 								</a>
 							</p>
 						</div>

@@ -60,9 +60,7 @@ export default function Header() {
 							height={70}
 							alt='Picture of the author'
 						/>
-						<div>
-							Игрушки <br />и развлечения
-						</div>
+						<div>Игрушки</div>
 					</Link>
 					<Link className='link__nav' href={'/care'}>
 						<Image
@@ -71,10 +69,7 @@ export default function Header() {
 							height={70}
 							alt='Picture of the author'
 						/>
-						<div>
-							Забота
-							<br /> и уход
-						</div>
+						<div>Забота</div>
 					</Link>
 					<Link className='link__nav' href={'/cloths'}>
 						<Image
@@ -87,10 +82,6 @@ export default function Header() {
 					</Link>
 				</nav>
 			</div>
-			<img
-				style={{ width: '100%', position: 'relative', top: 70 }}
-				src='/cloud.png'
-			></img>
 		</header>
 	)
 }

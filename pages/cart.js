@@ -121,12 +121,14 @@ export default function CartPage() {
 		return (
 			<>
 				<Header />
-				<ColumnsWrapper>
-					<Box>
-						<h1>Спасибо за покупку</h1>
-						<p>Мы отправили вам на почту информацию.</p>
-					</Box>
-				</ColumnsWrapper>
+				<Center>
+					<ColumnsWrapper>
+						<Box>
+							<h1>Спасибо за покупку</h1>
+							<p>Мы отправили вам на почту информацию.</p>
+						</Box>
+					</ColumnsWrapper>
+				</Center>
 			</>
 		)
 	}

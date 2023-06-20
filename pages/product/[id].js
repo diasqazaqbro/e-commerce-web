@@ -1,57 +1,115 @@
 import { CartContext } from '@/components/CartContext'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import ProductImages from '@/components/ProductImages'
+
 import CartIcon from '@/components/icons/CartIcon'
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
-import { useContext } from 'react'
+import axios from 'axios'
+import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
-const ColWrapper = styled.div`
-	display: grid;
-	grid-template-columns: 1fr;
-	@media screen and (min-width: 768px) {
-		grid-template-columns: 0.8fr 1.2fr;
-	}
-	gap: 40px;
-	margin: 40px 0;
-`
-const PriceRow = styled.div`
-	display: flex;
-	gap: 20px;
-	align-items: center;
-`
-const Price = styled.span`
-	font-size: 1.4rem;
-`
-
 export default function ProductPage({ product }) {
-	const { addProduct } = useContext(CartContext)
+	const QuantityLabel = styled.span`
+		padding: 0 15px;
+		display: block;
+		@media screen and (min-width: 768px) {
+			display: inline-block;
+			padding: 0 10px;
+		}
+	`
+	const { cartProducts, addProduct, removeProduct, clearCart } =
+		useContext(CartContext)
+	const [products, setProducts] = useState([])
+
+	useEffect(() => {
+		if (cartProducts.length > 0) {
+			axios.post('/api/cart', { ids: cartProducts }).then(response => {
+				setProducts(response.data)
+			})
+		} else {
+			setProducts([])
+		}
+	}, [cartProducts])
+	function moreOfThisProduct(id) {
+		addProduct(id)
+	}
+	function lessOfThisProduct(id) {
+		removeProduct(id)
+	}
 	return (
 		<>
 			<Header />
-			<ColWrapper>
-				<ProductImages images={product.images} />
-				<div>
-					<h2 className='title'>{product.title}</h2>
-					<p>{product.description}</p>
-					<PriceRow>
-						<div>
-							<Price>{product.price} Тг</Price>
+			<div className='product__item'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-4'>
+							<img src={product.images} />
 						</div>
-						<div>
-							<button
-								className='button'
-								primary
-								onClick={() => addProduct(product._id)}
-							>
-								<CartIcon />
-								Add to cart
-							</button>
+						<div className='col-8'>
+							<div className='row'>
+								<div className='col-6'>
+									<h2 className='title'>{product.title}</h2>
+									<p>{product.description}</p>
+									<div>
+										<div>
+											<div>{product.price} Тг</div>
+										</div>
+									</div>
+								</div>
+								<div className='col-6'>
+									<div className='s'>
+										{products
+											.filter(f => f._id === product._id)
+											.map(product => (
+												<tr key={product._id}>
+													<td>
+														<button
+															className='button'
+															onClick={() => lessOfThisProduct(product._id)}
+														>
+															-
+														</button>
+														<QuantityLabel>
+															{
+																cartProducts.filter(id => id === product._id)
+																	.length
+															}
+														</QuantityLabel>
+														<button
+															className='button'
+															onClick={() => moreOfThisProduct(product._id)}
+														>
+															+
+														</button>
+													</td>
+													<td>
+														{cartProducts.filter(id => id === product._id)
+															.length * product.price}{' '}
+														Тг
+													</td>
+												</tr>
+											))}
+										<tr>
+											<td></td>
+											<td></td>
+										</tr>
+									</div>
+									<button
+										className='button'
+										primary
+										onClick={() => addProduct(product._id)}
+									>
+										<CartIcon />
+										Add to cart
+									</button>
+								</div>
+							</div>
 						</div>
-					</PriceRow>
+					</div>
 				</div>
-			</ColWrapper>
+			</div>
+			<Footer />
 		</>
 	)
 }
