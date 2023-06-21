@@ -1,4 +1,3 @@
-import CartModal from '@/components/CartModal'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
@@ -12,7 +11,6 @@ export default function Stroller({ products }) {
 	return (
 		<div>
 			<Header />
-			<CartModal />
 			<div className='container my-5 py-5'>
 				<nav
 					style={{ '--bs-breadcrumb-divider': "'>';" }}

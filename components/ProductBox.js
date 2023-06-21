@@ -5,26 +5,25 @@ export default function ProductBox({ _id, title, price, images, col }) {
 	const { addProduct } = useContext(CartContext)
 	const url = '/product/' + _id
 	return (
-		<div className={'product p-4 col-' + col}>
-			<Link className='white__box' href={url}>
-				<div>
-					<img src={images?.[0]} alt='' />
-				</div>
-			</Link>
-			<div className='info my-4'>
-				<Link className='title' href={url}>
-					{title}
-				</Link>
-				<div className='price__row my-2'>
-					<button
-						className='button'
-						data-bs-toggle='modal'
-						data-bs-target='#exampleModal'
-						onClick={() => addProduct(_id)}
-					>
-						<div className='price'>{price} Тг</div>
-						<img src='https://i.ibb.co/Wy8sHYF/2.png' />
-					</button>
+		<div className={'product p-4 col-md-' + col}>
+			<div class='card'>
+				<div className='card-body'>
+					<Link href={url}>
+						<img class='card-img-top' src={images?.[0]} alt='' />
+					</Link>
+					<Link class='card-title' href={url}>
+						{title}
+					</Link>
+					<div class='card-price my-2' href={url}>
+						{price} Тг
+					</div>
+
+					{/* <button
+							className='button'
+							data-bs-toggle='modal'
+							data-bs-target='#exampleModal'
+							onClick={() => addProduct(_id)}
+						></button> */}
 				</div>
 			</div>
 		</div>

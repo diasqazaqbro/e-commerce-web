@@ -1,144 +1,228 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap')
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sanchez:ital@0;1&display=swap')
 
 $purple: #9900AB
 body
 	font-family: 'Montserrat', sans-serif
+	// font-family: 'Sanchez', serif
 .title
-	font-size: 2rem
-	margin: 30px 0 20px
-	font-weight: normal
-	color: $purple
-.button
-	color: $purple
+	font-size: 48px
+	text-align: center
+	border-bottom: 1px solid #eaeaea
+	margin: 0 auto 2vw
+	padding: 0.5em
+	box-sizing: border-box
+	line-height: 1
+	max-width: calc(1400px - 4vw)
+
 header
-	background: #6ebaca4a
-	nav
+	.header-sell
+		background-color: #444
+		width: 100%
+		font-size: 1em
+		padding: 1em 0
+		text-align: center
+		color: #fff
+		z-index: 99998
+		box-shadow: 0 1px 1em rgba(0,0,0,.2)
+		a
+			color: #fff
+			text-decoration: underline
+	.header-main
 		display: flex
-		justify-content: space-evenly
-		position: relative
+		justify-content: space-between
+		.search
+			.form-control
+				width: 500px
+		.account-menu
+			list-style: none
+			.mini-cart
+				position: relative
+				.cart-amount
+					position: absolute
+					bottom: -0.5em
+					right: -0.5em
+					min-width: 0.5em
+					height: 0.5em
+					padding: 0.7em
+					line-height: .2em
+					border-radius: 0.75em
+					font-size: 75%
+					text-align: center
+					color: #fff
+					background-color: #577f67
 
-		.link__nav
-			background-color: transparent
-			border: 0
-			color: $purple
+	nav
+		margin: 0
+		padding: 0
+		list-style: none
+		display: inline
+		a
+			display: inline-block
+			line-height: 40px
+			padding: 0 1em
+			margin: 0 10px
 			text-decoration: none
-			cursor: pointer
-
-form.form input[type='text']
-	padding: 10px
-	font-size: 16px
-	width: 100%
-	background: rgba(137, 59, 199, 0.19)
-	box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25)
-	border: none
-	border-radius: 35px
-	text-align: left
-	color: $purple
-
-/* Clear floats */
-form.form::after
-	content: ''
-	clear: both
-	display: table
+			color: inherit
+			transition: .4s
+			:hover
+				color: #577f67
+		.home
+			box-shadow: 0 -2px 0 #577f67 inset
+			color: #fff
+			background: #577f67
 
 .welcome
 	padding: 100px 0
-	.box__first
-		background: #FFFFFF
-		border: 1px solid #1D1A1A
-		box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25)
-		padding: 50px 25px
-		position: relative
-		left: 80px
-		top: 80px
-		z-index: 10
-		h1
-			font-weight: 400
-			font-size: 48px
-			letter-spacing: 0.07em
-			text-transform: uppercase
-			text-align: center
-			color: $purple
-		button
-			font-weight: 400
-			font-size: 32px
-			letter-spacing: 0.07em
-			text-transform: uppercase
-			text-align: center
-			color: $purple
-			background: rgba(110, 186, 202, 0.35)
-			border: 1px solid rgba(76, 37, 233, 0.35)
-			margin: 0 auto
-			display: block
-			padding: 15px 30px
-	.box__second
-		img
-			width: 100%
-			position: relative
-			z-index: 5
-			right: 80px
+	background-image: url(https://images.ctfassets.net/dvf03q5b4rnw/7mTcYNMpwqBl6ynrk2yMKI/dcbe35d1c81c23c9f0d6fad4dfbd8466/BS_HP_HERO_PHASE_1_END_OF_SEASON_SALE_-_UP_TO_50-_MAY_22_copy_2__1_.jpg?w=2000&h=1200&q=80)
+	h2, h3
+		color: white
+.category-list
+	padding: 60px 0
+	.list
+		display: flex
+		justify-content: space-between
+
+.quest
+	background: #f5f5f5
+	border-radius: 12px
+	padding: 40px
+	display: flex
+	justify-content: space-between
+	margin-top: 60px
+	h2
+		font-size: 22px
+		line-height: 140%
+		color: #2b3244
+		margin-bottom: 15px
+
+	p
+		font-size: 20px
+		line-height: 160%
+		color: #2b3244
+
+	.number
+		font-family: 'stol-reg'
+		font-size: 28px
+		line-height: 34px
+		text-align: right
+		color: #2b3244
+		display: block
+
+	.quest-text
+		font-size: 12px
+		line-height: 14px
+		color: #9a9a9a
+		text-align: end
+.comment
+	img
+		width: 100px
+		border-radius: 20px
+
+		&__ava
+			display: flex
+
+		&__name
+			font-weight: 500
+
+		&__status
+
+		&__review
+			background-color: #e5e5e5
+			border-radius: 15px
+			padding: 25px
 
 .product
-	.white__box
-		background-color: #b8b8b8
-		padding: 20px
-		height: 120px
-		text-align: center
-		display: flex
-		align-items: center
-		justify-content: center
-		border-radius: 10px
-		img
-			width: 100%
-			max-height: 80px
-
-	.info
-		margin-top: 5px
-		.title
-			font-weight: 400
-			font-size: 18px
-			line-height: 18px
-			color: $purple
-			text-decoration: none
-			text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
-			// link
-		.price__row
-			display: block
-			@media screen and (min-width: 768px)
-				display: flex
-				gap: 5px
-				align-items: center
-				justify-content: space-between
-				margin-top: 2px
-				.button
-					border: 1px solid #3F747F
-					border-radius: 2px
-					outline: none
-					cursor: pointer
-					background: none
-					display: flex
-					justify-content: space-between
-					width: 60%
-					text-align: center
-					img
-						position: relative
-						top: 2px
-					.price
-						font-style: normal
-						font-weight: 400
-						font-size: 18px
-						color: #000000
-						text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+	.card-title
+		margin: 0px
+		font-size: 20px
+		font-family: inherit
+		color: #577f67
+		font-weight: normal
+		font-style: normal
+		text-decoration: none
+	.card-price
+		font-size: 16px
+		color: #444
+		font-weight: normal
+		font-style: normal
+		text-decoration: none
+		font-family: 'Sanchez', serif
+	img
+		height: 200px
 
 .product__item
 	padding: 50px 0
-	.title
+	.border
+		border: 1px solid grey
+	.titles
 		font-style: normal
-		font-weight: 400
+		font-weight: 500
 		font-size: 32px
 		line-height: 39px
 		color: #000000
+	.price
+		font-size: 23px
+		font-family: 'Sanchez', serif
 	img
 		width: 400px
 	.info
 		border: 1px solid gray
+	.product-cart
+		.button
+			margin: 10px 15px
+			padding: 2px 10px
+			font-size: 20px
+			font-family: 'Sanchez', serif
+
+.cart
+	.cart-img
+		width: 32px
+		height: 32px
+		box-shadow: none
+	.name a
+		color: #577f67
+		text-decoration: none
+	.button
+		margin: 0 5px
+		padding: 2px 10px
+		font-size: 20px
+		font-family: 'Sanchez', serif
+
+@media (max-width: 770px)
+	.title
+		font-size: 32px
+	header
+		.header-sell
+			font-size: 0.8em
+			padding: 1em 0
+		.header-main
+			.search
+				.form-control
+					width: 200px
+
+	.welcome
+		padding: 80px
+	.category-list
+		padding: 40px 0
+		.list
+			flex-wrap: wrap
+
+	.product__item
+		.titles
+			font-size: 24px
+		.price
+			font-size: 18px
+
+	.quest
+		h2
+			font-size: 20px
+
+		p
+			font-size: 14px
+
+		.number
+			font-size: 20px
+
+		.quest-text
+			font-size: 10px

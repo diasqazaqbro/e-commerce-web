@@ -1,6 +1,8 @@
 import { CartContext } from '@/components/CartContext'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import axios from 'axios'
+import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 import styled from 'styled-components'
 
@@ -18,48 +20,6 @@ const Box = styled.div`
 	background-color: #fff;
 	border-radius: 10px;
 	padding: 30px;
-`
-
-const ProductInfoCell = styled.td`
-	padding: 10px 0;
-`
-
-const ProductImageBox = styled.div`
-	width: 70px;
-	height: 100px;
-	padding: 2px;
-	border: 1px solid rgba(0, 0, 0, 0.1);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 10px;
-	img {
-		max-width: 60px;
-		max-height: 60px;
-	}
-	@media screen and (min-width: 768px) {
-		padding: 10px;
-		width: 100px;
-		height: 100px;
-		img {
-			max-width: 80px;
-			max-height: 80px;
-		}
-	}
-`
-
-const QuantityLabel = styled.span`
-	padding: 0 15px;
-	display: block;
-	@media screen and (min-width: 768px) {
-		display: inline-block;
-		padding: 0 10px;
-	}
-`
-
-const CityHolder = styled.div`
-	display: flex;
-	gap: 5px;
 `
 
 export default function CartPage() {
@@ -136,121 +96,162 @@ export default function CartPage() {
 		<>
 			<Header />
 			<div className='container'>
-				<ColumnsWrapper>
-					<Box>
-						<h2>Cart</h2>
-						{!cartProducts?.length && <div>Корзина пуста</div>}
-						{products?.length > 0 && (
-							<div>
-								<thead>
-									<tr>
-										<th>Продукт</th>
-										<th>Количество</th>
-										<th>Цена</th>
-									</tr>
-								</thead>
-								<tbody>
-									{products.map(product => (
-										<tr key={product._id}>
-											<ProductInfoCell>
-												<ProductImageBox>
-													<img src={product.images[0]} alt='' />
-												</ProductImageBox>
-												{product.title}
-											</ProductInfoCell>
-											<td>
-												<button
-													className='button'
-													onClick={() => lessOfThisProduct(product._id)}
-												>
-													-
-												</button>
-												<QuantityLabel>
-													{cartProducts.filter(id => id === product._id).length}
-												</QuantityLabel>
-												<button
-													className='button'
-													onClick={() => moreOfThisProduct(product._id)}
-												>
-													+
-												</button>
-											</td>
-											<td>
-												{cartProducts.filter(id => id === product._id).length *
-													product.price}{' '}
-												Тг
-											</td>
-										</tr>
-									))}
-									<tr>
-										<td></td>
-										<td></td>
-										<td>{total} Тг</td>
-									</tr>
-								</tbody>
-							</div>
-						)}
-					</Box>
-					{!!cartProducts?.length && (
-						<Box>
-							<h2>Информация о покупке</h2>
+				<nav
+					style={{ '--bs-breadcrumb-divider': "'>';" }}
+					aria-label='breadcrumb'
+					className='my-4'
+				>
+					<ol className='breadcrumb'>
+						<li className='breadcrumb-item'>
+							<a href='/'>Главная страница</a>
+						</li>
+						<li className='breadcrumb-item active' aria-current='page'>
+							Корзина
+						</li>
+					</ol>
+				</nav>
+				<h1 className='title'>Корзина товаров</h1>
+
+				{!cartProducts?.length && <div>Корзина пуста</div>}
+				{products?.length > 0 && (
+					<table class='cart table'>
+						<thead>
+							<tr>
+								<th scope='col'>Фото</th>
+								<th scope='col'>Товар</th>
+								<th scope='col'>Цена</th>
+								<th scope='col'>Количество</th>
+								<th scope='col'>Итог</th>
+							</tr>
+						</thead>
+						<tbody>
+							{products.map(product => (
+								<tr key={product._id}>
+									<td scope='row'>
+										<Link href={'/product/' + product._id}>
+											<img
+												className='cart-img'
+												src={product.images[0]}
+												alt=''
+											/>
+										</Link>
+									</td>
+
+									<td className='name'>
+										<Link href={'/product/' + product._id}>
+											{product.title}
+										</Link>
+									</td>
+
+									<td>{product.price} Тг</td>
+
+									<td>
+										<td>
+											<button
+												className='button'
+												onClick={() => lessOfThisProduct(product._id)}
+											>
+												-
+											</button>
+											{cartProducts.filter(id => id === product._id).length}
+											<button
+												className='button'
+												onClick={() => moreOfThisProduct(product._id)}
+											>
+												+
+											</button>
+										</td>
+									</td>
+
+									<td>
+										{cartProducts.filter(id => id === product._id).length *
+											product.price}
+										Тг
+									</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				)}
+
+				{!!cartProducts?.length && (
+					<>
+						<h1 className='title mt-5'>Информация о покупке</h1>
+						<div class='input-group mb-3'>
+							<span class='input-group-text' id='basic-addon1'>
+								Владимир Путин
+							</span>
 							<input
-								className='input'
 								type='text'
-								placeholder='Name'
+								class='form-control'
+								placeholder='ФИО'
 								value={name}
 								name='name'
 								onChange={ev => setName(ev.target.value)}
 							/>
+						</div>
+
+						<div class='input-group mb-3'>
 							<input
-								className='input'
 								type='text'
-								placeholder='Email'
+								class='form-control'
+								placeholder='Почта'
 								value={email}
 								name='email'
 								onChange={ev => setEmail(ev.target.value)}
 							/>
-							<CityHolder>
-								<input
-									className='input'
-									type='text'
-									placeholder='City'
-									value={city}
-									name='city'
-									onChange={ev => setCity(ev.target.value)}
-								/>
-								<input
-									className='input'
-									type='text'
-									placeholder='Postal Code'
-									value={postalCode}
-									name='postalCode'
-									onChange={ev => setPostalCode(ev.target.value)}
-								/>
-							</CityHolder>
+							<span class='input-group-text' id='basic-addon2'>
+								@example.com
+							</span>
+						</div>
+
+						<div class='input-group mb-3'>
 							<input
-								className='input'
 								type='text'
-								placeholder='Street Address'
+								class='form-control'
+								placeholder='Город'
+								value={city}
+								name='city'
+								onChange={ev => setCity(ev.target.value)}
+							/>
+							<span class='input-group-text'>|</span>
+							<input
+								type='text'
+								class='form-control'
+								placeholder='Почтовый Индекс'
+								value={postalCode}
+								name='postalCode'
+								onChange={ev => setPostalCode(ev.target.value)}
+							/>
+						</div>
+						<div class='input-group mb-3'>
+							<input
+								type='text'
+								class='form-control'
+								placeholder='Адрес'
 								value={streetAddress}
 								name='streetAddress'
 								onChange={ev => setStreetAddress(ev.target.value)}
 							/>
+							<span class='input-group-text'>|</span>
 							<input
-								className='input'
 								type='text'
-								placeholder='Country'
+								class='form-control'
+								placeholder='Страна'
 								value={country}
 								name='country'
 								onChange={ev => setCountry(ev.target.value)}
 							/>
-							<button className='button' onClick={goToPayment}>
+						</div>
+						<div class='d-grid gap-2 col-6 mx-auto'>
+							<button className='btn btn-outline-success' onClick={goToPayment}>
 								Продолжить оплату
 							</button>
-						</Box>
-					)}
-				</ColumnsWrapper>
+						</div>
+					</>
+				)}
 			</div>
+			<Footer />
 		</>
 	)
 }

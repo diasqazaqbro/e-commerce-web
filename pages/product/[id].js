@@ -2,22 +2,12 @@ import { CartContext } from '@/components/CartContext'
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 
-import CartIcon from '@/components/icons/CartIcon'
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
-import styled from 'styled-components'
 
 export default function ProductPage({ product }) {
-	const QuantityLabel = styled.span`
-		padding: 0 15px;
-		display: block;
-		@media screen and (min-width: 768px) {
-			display: inline-block;
-			padding: 0 10px;
-		}
-	`
 	const { cartProducts, addProduct, removeProduct, clearCart } =
 		useContext(CartContext)
 	const [products, setProducts] = useState([])
@@ -42,67 +32,123 @@ export default function ProductPage({ product }) {
 			<Header />
 			<div className='product__item'>
 				<div className='container'>
+					<nav
+						style={{ '--bs-breadcrumb-divider': "'>';" }}
+						aria-label='breadcrumb'
+					>
+						<ol className='breadcrumb'>
+							<li className='breadcrumb-item'>
+								<a href='/'>Главная страница</a>
+							</li>
+							<li className='breadcrumb-item active' aria-current='page'>
+								{product.title}
+							</li>
+						</ol>
+					</nav>
 					<div className='row'>
-						<div className='col-4'>
+						<div className='border col-md-4'>
 							<img src={product.images} />
 						</div>
-						<div className='col-8'>
+						<div className='col-md-8'>
 							<div className='row'>
-								<div className='col-6'>
-									<h2 className='title'>{product.title}</h2>
-									<p>{product.description}</p>
-									<div>
-										<div>
-											<div>{product.price} Тг</div>
+								<div className='col-6 mx-3'>
+									<h2 className='titles'>{product.title}</h2>
+
+									<div className='price'>{product.price} Тг</div>
+									<button
+										onClick={() => addProduct(product._id)}
+										className='btn my-2 btn-lg btn-outline-success'
+									>
+										Добавить в корзину
+									</button>
+									<div class='accordion-item my-3'>
+										<h2 class='accordion-header' id='flush-headingOne'>
+											<button
+												class='accordion-button collapsed'
+												type='button'
+												data-bs-toggle='collapse'
+												data-bs-target='#flush-collapseOne'
+												aria-expanded='false'
+												aria-controls='flush-collapseOne'
+											>
+												Описание
+											</button>
+										</h2>
+										<div
+											id='flush-collapseOne'
+											class='accordion-collapse collapse show'
+											aria-labelledby='flush-headingOne'
+											data-bs-parent='#accordionFlushExample'
+										>
+											<div class='accordion-body'>{product.description}</div>
+										</div>
+									</div>
+									<div class='accordion-item'>
+										<h2 class='accordion-header' id='flush-headingOne'>
+											<button
+												class='accordion-button collapsed'
+												type='button'
+												data-bs-toggle='collapse'
+												data-bs-target='#flush-collapseOnee'
+												aria-expanded='false'
+												aria-controls='flush-collapseOnee'
+											>
+												Условие перевозки
+											</button>
+										</h2>
+										<div
+											id='flush-collapseOnee'
+											class='accordion-collapse collapse'
+											aria-labelledby='flush-headingOnee'
+											data-bs-parent='#accordionFlushExamplee'
+										>
+											<div class='accordion-body'>
+												<b className='my-3'>Доставка</b>
+												<br /> Мы стремимся отправить все заказы с нашего склада
+												в течение одного рабочего дня. Дополнительную информацию
+												о сроках и стоимости доставки для вашего конкретного
+												места можно получить при оформлении заказа. <br />
+												<br />
+												Обратите внимание, что ваш заказ может быть отправлен в
+												разных упаковках. Когда ваш заказ будет отправлен с
+												нашего склада, мы вышлем вам подтверждение доставки по
+												электронной почте с номером отслеживания. <br /> <br />
+												<b className='my-3'>Возврат</b> <br />
+												Мы хотим, чтобы вы остались довольны своим товаром и
+												имели возможность рассмотреть его поближе. Если вы
+												хотите вернуть товар, вы можете узнать больше о нашей
+												политике возврата здесь.
+											</div>
 										</div>
 									</div>
 								</div>
-								<div className='col-6'>
-									<div className='s'>
+								<div className='col-5'>
+									<h2 className='titles'>Количество товара</h2>
+									<div className='product-cart'>
 										{products
 											.filter(f => f._id === product._id)
 											.map(product => (
-												<tr key={product._id}>
-													<td>
-														<button
-															className='button'
-															onClick={() => lessOfThisProduct(product._id)}
-														>
-															-
-														</button>
-														<QuantityLabel>
-															{
-																cartProducts.filter(id => id === product._id)
-																	.length
-															}
-														</QuantityLabel>
-														<button
-															className='button'
-															onClick={() => moreOfThisProduct(product._id)}
-														>
-															+
-														</button>
-													</td>
-													<td>
-														{cartProducts.filter(id => id === product._id)
-															.length * product.price}{' '}
-														Тг
-													</td>
-												</tr>
+												<div key={product._id}>
+													<button
+														className='button'
+														onClick={() => lessOfThisProduct(product._id)}
+													>
+														-
+													</button>
+													{cartProducts.filter(id => id === product._id).length}
+													<button
+														className='button'
+														onClick={() => moreOfThisProduct(product._id)}
+													>
+														+
+													</button>
+													{cartProducts.filter(id => id === product._id)
+														.length * product.price}{' '}
+													Тг
+												</div>
 											))}
-										<tr>
-											<td></td>
-											<td></td>
-										</tr>
 									</div>
-									<button
-										className='button'
-										primary
-										onClick={() => addProduct(product._id)}
-									>
-										<CartIcon />
-										Add to cart
-									</button>
+									<hr />
 								</div>
 							</div>
 						</div>
