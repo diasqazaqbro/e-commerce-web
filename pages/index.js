@@ -20,6 +20,7 @@ export default function HomePage({ featuredProduct, newProducts }) {
 								src={
 									'https://babyplus.store/wp-content/uploads/sites/2/2023/02/2-Categorie-Wandelen-EN.png'
 								}
+								alt=''
 								width={135}
 								height={135}
 							/>
@@ -77,9 +78,9 @@ export default function HomePage({ featuredProduct, newProducts }) {
 							</p>
 						</div>
 						<div className='col-6'>
-							<a href='tel:8 (702) 244 53 00' class='number'>
+							<Link href='tel:8 (702) 244 53 00' class='number'>
 								8 (702) 244 53 00
-							</a>
+							</Link>
 							<div class='quest-text'>Ежедневно с 10:00 до 20:00</div>
 						</div>
 					</div>

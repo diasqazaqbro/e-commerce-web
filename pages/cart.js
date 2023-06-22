@@ -4,23 +4,6 @@ import Header from '@/components/Header'
 import axios from 'axios'
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
-import styled from 'styled-components'
-
-const ColumnsWrapper = styled.div`
-	display: grid;
-	grid-template-columns: 1fr;
-	@media screen and (min-width: 768px) {
-		grid-template-columns: 1.2fr 0.8fr;
-	}
-	gap: 40px;
-	margin-top: 40px;
-`
-
-const Box = styled.div`
-	background-color: #fff;
-	border-radius: 10px;
-	padding: 30px;
-`
 
 export default function CartPage() {
 	const { cartProducts, addProduct, removeProduct, clearCart } =
@@ -81,14 +64,8 @@ export default function CartPage() {
 		return (
 			<>
 				<Header />
-				<Center>
-					<ColumnsWrapper>
-						<Box>
-							<h1>Спасибо за покупку</h1>
-							<p>Мы отправили вам на почту информацию.</p>
-						</Box>
-					</ColumnsWrapper>
-				</Center>
+				<h1>Спасибо за покупку</h1>
+				<p>Мы отправили вам на почту информацию.</p>
 			</>
 		)
 	}
@@ -103,7 +80,7 @@ export default function CartPage() {
 				>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='/'>Главная страница</a>
+							<Link href='/'>Главная страница</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
 							Корзина

@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
 import axios from 'axios'
+import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
 
 export default function ProductPage({ product }) {
@@ -38,7 +39,7 @@ export default function ProductPage({ product }) {
 					>
 						<ol className='breadcrumb'>
 							<li className='breadcrumb-item'>
-								<a href='/'>Главная страница</a>
+								<Link href='/'>Главная страница</Link>
 							</li>
 							<li className='breadcrumb-item active' aria-current='page'>
 								{product.title}
@@ -47,7 +48,7 @@ export default function ProductPage({ product }) {
 					</nav>
 					<div className='row'>
 						<div className='border col-md-4'>
-							<img src={product.images} />
+							<img src={product.images} alt='' />
 						</div>
 						<div className='col-md-8'>
 							<div className='row'>

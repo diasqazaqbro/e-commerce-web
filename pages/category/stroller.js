@@ -4,6 +4,7 @@ import Header from '@/components/Header'
 import ProductBox from '@/components/ProductBox'
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
+import Link from 'next/link'
 
 export default function Stroller({ products }) {
 	console.log(products)
@@ -18,7 +19,7 @@ export default function Stroller({ products }) {
 				>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='/'>Главная страница</a>
+							<Link href='/'>Главная страница</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
 							Прогулка и улица

@@ -1,5 +1,6 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
+import Link from 'next/link'
 
 export default function Toys() {
 	return (
@@ -12,7 +13,7 @@ export default function Toys() {
 				>
 					<ol className='breadcrumb'>
 						<li className='breadcrumb-item'>
-							<a href='/'>Главная страница</a>
+							<Link href='/'>Главная страница</Link>
 						</li>
 						<li className='breadcrumb-item active' aria-current='page'>
 							Игрушки
