@@ -6,7 +6,7 @@ export default function About() {
 		<>
 			<Header />
 			<div className='container'>
-				<h1 className='my-2 title'>Детский интернет магазин "Tatos" </h1>
+				<h1 className='my-2 title'>Детский интернет магазин Tatos </h1>
 				<br />
 				<br />
 				1. Магазин где Вы встретите всё необходимое для своих малышей, наши
