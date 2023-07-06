@@ -1,27 +1,33 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-import Link from 'next/link'
-
-export default function Room() {
+import Footer from '@/components/Header/Footer'
+import Header from '@/components/Header/Header'
+import ProductInner from '@/components/Product/InnerProduct'
+import NavProduct from '@/components/Product/NavProduct'
+import { mongooseConnect } from '@/lib/mongoose'
+import { Product } from '@/models/Product'
+import { useEffect } from 'react'
+export default function Room({ products }) {
+	const nav = 'Комната'
+	const category = '648be635e0a4fc54af37ee7e'
+	useEffect(() => {
+		document.title = `Категория - ${nav} | Tatos.kz`
+	}, [])
 	return (
-		<div>
+		<>
 			<Header />
 			<div className='container my-5 py-5'>
-				<nav
-					style={{ '--bs-breadcrumb-divider': "'>';" }}
-					aria-label='breadcrumb'
-				>
-					<ol className='breadcrumb'>
-						<li className='breadcrumb-item'>
-							<Link href='/'>Главная страница</Link>
-						</li>
-						<li className='breadcrumb-item active' aria-current='page'>
-							Детская комната
-						</li>
-					</ol>
-				</nav>
+				<NavProduct nav={nav} />
+				<ProductInner products={products} category={category} />
 			</div>
 			<Footer />
-		</div>
+		</>
 	)
+}
+export async function getServerSideProps() {
+	await mongooseConnect()
+	const products = await Product.find()
+	return {
+		props: {
+			products: JSON.parse(JSON.stringify(products)),
+		},
+	}
 }

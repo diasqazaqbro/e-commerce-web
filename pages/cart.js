@@ -1,6 +1,6 @@
 import { CartContext } from '@/components/CartContext'
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+import Footer from '@/components/Header/Footer'
+import Header from '@/components/Header/Header'
 import axios from 'axios'
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
@@ -10,11 +10,10 @@ export default function CartPage() {
 		useContext(CartContext)
 	const [products, setProducts] = useState([])
 	const [name, setName] = useState('')
-	const [email, setEmail] = useState('')
-	const [city, setCity] = useState('')
-	const [postalCode, setPostalCode] = useState('')
-	const [streetAddress, setStreetAddress] = useState('')
-	const [country, setCountry] = useState('')
+	const [number, setNumber] = useState('')
+	const [option, setOption] = useState('')
+	const [commentary, setCommentary] = useState('')
+
 	const [isSuccess, setIsSuccess] = useState(false)
 	useEffect(() => {
 		if (cartProducts.length > 0) {
@@ -26,13 +25,7 @@ export default function CartPage() {
 		}
 	}, [cartProducts])
 	useEffect(() => {
-		if (typeof window === 'undefined') {
-			return
-		}
-		if (window?.location.href.includes('success')) {
-			setIsSuccess(true)
-			clearCart()
-		}
+		document.title = 'Корзина товаров | Tatos.kz'
 	}, [])
 	function moreOfThisProduct(id) {
 		addProduct(id)
@@ -43,13 +36,13 @@ export default function CartPage() {
 	async function goToPayment() {
 		const response = await axios.post('/api/checkout', {
 			name,
-			email,
-			city,
-			postalCode,
-			streetAddress,
-			country,
+			number,
+			option,
+			commentary,
 			cartProducts,
 		})
+		setIsSuccess(true)
+		clearCart()
 		if (response.data.url) {
 			window.location = response.data.url
 		}
@@ -64,8 +57,11 @@ export default function CartPage() {
 		return (
 			<>
 				<Header />
-				<h1>Спасибо за покупку</h1>
-				<p>Мы отправили вам на почту информацию.</p>
+				<div className='text-center my-5 py-5'>
+					<h1>Спасибо за покупку</h1>
+					<p>Мы отправим вам на {option} информацию.</p>
+				</div>
+				<Footer />
 			</>
 		)
 	}
@@ -89,9 +85,13 @@ export default function CartPage() {
 				</nav>
 				<h1 className='title'>Корзина товаров</h1>
 
-				{!cartProducts?.length && <div>Корзина пуста</div>}
+				{!cartProducts?.length && (
+					<h5 className='text-center'>
+						Корзина пуста. <Link href={'/'}>Подберите товар для себя</Link>
+					</h5>
+				)}
 				{products?.length > 0 && (
-					<table class='cart table'>
+					<table className='cart table'>
 						<thead>
 							<tr>
 								<th scope='col'>Фото</th>
@@ -154,13 +154,13 @@ export default function CartPage() {
 				{!!cartProducts?.length && (
 					<>
 						<h1 className='title mt-5'>Информация о покупке</h1>
-						<div class='input-group mb-3'>
-							<span class='input-group-text' id='basic-addon1'>
+						<div className='input-group mb-3'>
+							<span className='input-group-text' id='basic-addon1'>
 								Владимир Путин
 							</span>
 							<input
 								type='text'
-								class='form-control'
+								className='form-control'
 								placeholder='ФИО'
 								value={name}
 								name='name'
@@ -168,59 +168,41 @@ export default function CartPage() {
 							/>
 						</div>
 
-						<div class='input-group mb-3'>
+						<div className='input-group mb-3'>
 							<input
 								type='text'
-								class='form-control'
-								placeholder='Почта'
-								value={email}
-								name='email'
-								onChange={ev => setEmail(ev.target.value)}
+								className='form-control'
+								placeholder='Номер'
+								value={number}
+								name='number'
+								onChange={ev => setNumber(ev.target.value)}
 							/>
-							<span class='input-group-text' id='basic-addon2'>
-								@example.com
+							<span className='input-group-text' id='basic-addon2'>
+								+77027777777
 							</span>
 						</div>
 
-						<div class='input-group mb-3'>
+						<div className='input-group mb-3'>
 							<input
 								type='text'
-								class='form-control'
-								placeholder='Город'
-								value={city}
-								name='city'
-								onChange={ev => setCity(ev.target.value)}
+								className='form-control'
+								placeholder='Удобный способ связаться (WhatsApp, Telegram, По звонку)'
+								value={option}
+								name='option'
+								onChange={ev => setOption(ev.target.value)}
 							/>
-							<span class='input-group-text'>|</span>
+							<span className='input-group-text'>|</span>
 							<input
 								type='text'
-								class='form-control'
-								placeholder='Почтовый Индекс'
-								value={postalCode}
-								name='postalCode'
-								onChange={ev => setPostalCode(ev.target.value)}
-							/>
-						</div>
-						<div class='input-group mb-3'>
-							<input
-								type='text'
-								class='form-control'
-								placeholder='Адрес'
-								value={streetAddress}
-								name='streetAddress'
-								onChange={ev => setStreetAddress(ev.target.value)}
-							/>
-							<span class='input-group-text'>|</span>
-							<input
-								type='text'
-								class='form-control'
-								placeholder='Страна'
-								value={country}
-								name='country'
-								onChange={ev => setCountry(ev.target.value)}
+								className='form-control'
+								placeholder='Комментарий'
+								value={commentary}
+								name='commentary'
+								onChange={ev => setCommentary(ev.target.value)}
 							/>
 						</div>
-						<div class='d-grid gap-2 col-6 mx-auto'>
+
+						<div className='d-grid gap-2 col-6 mx-auto'>
 							<button className='btn btn-outline-success' onClick={goToPayment}>
 								Продолжить оплату
 							</button>

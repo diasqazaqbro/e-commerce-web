@@ -1,56 +1,30 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
-
-import ProductBox from '@/components/ProductBox'
+import Footer from '@/components/Header/Footer'
+import Header from '@/components/Header/Header'
+import ProductInner from '@/components/Product/InnerProduct'
+import NavProduct from '@/components/Product/NavProduct'
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
-import Link from 'next/link'
-
+import { useEffect } from 'react'
 export default function Stroller({ products }) {
-	console.log(products)
 	const category = '648be61de0a4fc54af37ee71'
+	const nav = 'Коляски'
+	useEffect(() => {
+		document.title = `Категория - ${nav} | Tatos.kz`
+	}, [])
 	return (
-		<div>
+		<>
 			<Header />
 			<div className='container my-5 py-5'>
-				<nav
-					style={{ '--bs-breadcrumb-divider': "'>';" }}
-					aria-label='breadcrumb'
-				>
-					<ol className='breadcrumb'>
-						<li className='breadcrumb-item'>
-							<Link href='/'>Главная страница</Link>
-						</li>
-						<li className='breadcrumb-item active' aria-current='page'>
-							Прогулка и улица
-						</li>
-					</ol>
-				</nav>
-				<div className='row'>
-					<div className='col-4'></div>
-					<div className='col-8'>
-						<div className='row g-5'>
-							{products?.length > 0 &&
-								products
-									.filter(f => f.category === category)
-									.map(product => (
-										<ProductBox col={'4'} key={product._id} {...product} />
-									))}
-						</div>
-					</div>
-				</div>
+				<NavProduct nav={nav} />
+				<ProductInner products={products} category={category} />
 			</div>
 			<Footer />
-		</div>
+		</>
 	)
 }
-
 export async function getServerSideProps() {
 	await mongooseConnect()
-	const products = await Product.find({}, null, {
-		sort: { _id: -1 },
-		limit: 10,
-	})
+	const products = await Product.find()
 	return {
 		props: {
 			products: JSON.parse(JSON.stringify(products)),

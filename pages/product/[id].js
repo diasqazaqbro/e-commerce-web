@@ -1,6 +1,6 @@
 import { CartContext } from '@/components/CartContext'
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+import Footer from '@/components/Header/Footer'
+import Header from '@/components/Header/Header'
 
 import { mongooseConnect } from '@/lib/mongoose'
 import { Product } from '@/models/Product'
@@ -12,7 +12,9 @@ export default function ProductPage({ product }) {
 	const { cartProducts, addProduct, removeProduct, clearCart } =
 		useContext(CartContext)
 	const [products, setProducts] = useState([])
-
+	useEffect(() => {
+		document.title = `${product.title} | Tatos.kz`
+	}, [])
 	useEffect(() => {
 		if (cartProducts.length > 0) {
 			axios.post('/api/cart', { ids: cartProducts }).then(response => {
@@ -47,14 +49,13 @@ export default function ProductPage({ product }) {
 						</ol>
 					</nav>
 					<div className='row'>
-						<div className='border col-md-4'>
-							<img src={product.images} alt='' />
+						<div className='border col-md-4 col-sm-12 my-4'>
+							<img className='img-fluid' src={product.images} alt='' />
 						</div>
 						<div className='col-md-8'>
 							<div className='row'>
 								<div className='col-6 mx-3'>
 									<h2 className='titles'>{product.title}</h2>
-
 									<div className='price'>{product.price} Тг</div>
 									<button
 										onClick={() => addProduct(product._id)}
@@ -62,66 +63,35 @@ export default function ProductPage({ product }) {
 									>
 										Добавить в корзину
 									</button>
-									<div class='accordion-item my-3'>
-										<h2 class='accordion-header' id='flush-headingOne'>
-											<button
-												class='accordion-button collapsed'
-												type='button'
-												data-bs-toggle='collapse'
-												data-bs-target='#flush-collapseOne'
-												aria-expanded='false'
-												aria-controls='flush-collapseOne'
-											>
-												Описание
-											</button>
-										</h2>
-										<div
-											id='flush-collapseOne'
-											class='accordion-collapse collapse show'
-											aria-labelledby='flush-headingOne'
-											data-bs-parent='#accordionFlushExample'
-										>
-											<div class='accordion-body'>{product.description}</div>
+
+									<details className='my-3'>
+										<summary>
+											<h4 className='d-inline'>Описание</h4>
+										</summary>
+										<div className='accordion-body'>{product.description}</div>
+									</details>
+									<details className='my-3'>
+										<summary>
+											<h4 className='d-inline'>Условие перевозки</h4>
+										</summary>
+										<div className='accordion-body'>
+											<b className='my-3'>Доставка</b>
+											<br /> Мы стремимся отправить все заказы с нашего склада в
+											течение одного рабочего дня. Дополнительную информацию о
+											сроках и стоимости доставки для вашего конкретного места
+											можно получить при оформлении заказа. <br />
+											<br />
+											Обратите внимание, что ваш заказ может быть отправлен в
+											разных упаковках. Когда ваш заказ будет отправлен с нашего
+											склада, мы вышлем вам подтверждение доставки по
+											электронной почте с номером отслеживания. <br /> <br />
+											<b className='my-3'>Возврат</b> <br />
+											Мы хотим, чтобы вы остались довольны своим товаром и имели
+											возможность рассмотреть его поближе. Если вы хотите
+											вернуть товар, вы можете узнать больше о нашей политике
+											возврата здесь.
 										</div>
-									</div>
-									<div class='accordion-item'>
-										<h2 class='accordion-header' id='flush-headingOne'>
-											<button
-												class='accordion-button collapsed'
-												type='button'
-												data-bs-toggle='collapse'
-												data-bs-target='#flush-collapseOnee'
-												aria-expanded='false'
-												aria-controls='flush-collapseOnee'
-											>
-												Условие перевозки
-											</button>
-										</h2>
-										<div
-											id='flush-collapseOnee'
-											class='accordion-collapse collapse'
-											aria-labelledby='flush-headingOnee'
-											data-bs-parent='#accordionFlushExamplee'
-										>
-											<div class='accordion-body'>
-												<b className='my-3'>Доставка</b>
-												<br /> Мы стремимся отправить все заказы с нашего склада
-												в течение одного рабочего дня. Дополнительную информацию
-												о сроках и стоимости доставки для вашего конкретного
-												места можно получить при оформлении заказа. <br />
-												<br />
-												Обратите внимание, что ваш заказ может быть отправлен в
-												разных упаковках. Когда ваш заказ будет отправлен с
-												нашего склада, мы вышлем вам подтверждение доставки по
-												электронной почте с номером отслеживания. <br /> <br />
-												<b className='my-3'>Возврат</b> <br />
-												Мы хотим, чтобы вы остались довольны своим товаром и
-												имели возможность рассмотреть его поближе. Если вы
-												хотите вернуть товар, вы можете узнать больше о нашей
-												политике возврата здесь.
-											</div>
-										</div>
-									</div>
+									</details>
 								</div>
 								<div className='col-5'>
 									<h2 className='titles'>Количество товара</h2>
@@ -146,6 +116,12 @@ export default function ProductPage({ product }) {
 													{cartProducts.filter(id => id === product._id)
 														.length * product.price}{' '}
 													Тг
+													<Link
+														className='btn btn-success d-block'
+														href={'/cart'}
+													>
+														Корзина
+													</Link>
 												</div>
 											))}
 									</div>

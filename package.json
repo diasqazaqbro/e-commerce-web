@@ -21,6 +21,7 @@
     "sass": "^1.62.1",
     "scss": "^0.2.4",
     "stripe": "^11.16.0",
-    "styled-components": "^5.3.9"
+    "styled-components": "^5.3.9",
+    "yookassa": "^0.1.1"
   }
 }
