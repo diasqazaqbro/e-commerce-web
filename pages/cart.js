@@ -257,8 +257,6 @@ export default function CartPage() {
 						) : (
 							''
 						)}
-
-						{validate ? validate : <div>312</div>}
 					</>
 				)}
 			</div>

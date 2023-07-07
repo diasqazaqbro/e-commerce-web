@@ -55,8 +55,6 @@ export default function ProductInner({ products, category }) {
 		} else if (sort === 'createdAt') {
 			setProductsArr([...productsArr].reverse())
 		}
-
-		console.log(productsArr)
 	}
 	return (
 		<div className='row'>
