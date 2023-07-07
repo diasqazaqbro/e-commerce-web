@@ -13,7 +13,8 @@ export default function CartPage() {
 	const [number, setNumber] = useState('')
 	const [option, setOption] = useState('')
 	const [commentary, setCommentary] = useState('')
-
+	const [validate, setValidate] = useState(false)
+	const [modal, setModal] = useState(false)
 	const [isSuccess, setIsSuccess] = useState(false)
 	useEffect(() => {
 		if (cartProducts.length > 0) {
@@ -34,17 +35,25 @@ export default function CartPage() {
 		removeProduct(id)
 	}
 	async function goToPayment() {
-		const response = await axios.post('/api/checkout', {
-			name,
-			number,
-			option,
-			commentary,
-			cartProducts,
-		})
-		setIsSuccess(true)
-		clearCart()
-		if (response.data.url) {
-			window.location = response.data.url
+		if (name === '') {
+			setValidate('name')
+			setModal(true)
+		} else if (number === '') {
+			setValidate('number')
+			setModal(true)
+		} else {
+			const response = await axios.post('/api/checkout', {
+				name,
+				number,
+				option,
+				commentary,
+				cartProducts,
+			})
+			setIsSuccess(true)
+			clearCart()
+			if (response.data.url) {
+				window.location = response.data.url
+			}
 		}
 	}
 	let total = 0
@@ -149,6 +158,20 @@ export default function CartPage() {
 									</td>
 								</tr>
 							))}
+							<td className='pt-4'>
+								<button
+									onClick={() => clearCart()}
+									className='btn btn-outline-success  btn-sm'
+								>
+									Очистить корзину
+								</button>
+							</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td className='pt-4 total'>
+								<h5>{total} Тг</h5>
+							</td>
 						</tbody>
 					</table>
 				)}
@@ -212,6 +235,30 @@ export default function CartPage() {
 								Продолжить оплату
 							</button>
 						</div>
+						{modal ? (
+							<div
+								className='position-fixed cart-modal top-0 end-0 p-3'
+								style={{ 'z-index': 11 }}
+							>
+								<div className='toast-header'>
+									<div className='rounded me-2 img' alt='...'>
+										/
+									</div>
+									<strong className='me-auto'>Validate</strong>
+									<small>сейчас</small>
+									<button
+										onClick={() => setModal(false)}
+										type='button'
+										className='btn-close'
+									></button>
+								</div>
+								<div className='toast-body'>Вы не указали имя или номер.</div>
+							</div>
+						) : (
+							''
+						)}
+
+						{validate ? validate : <div>312</div>}
 					</>
 				)}
 			</div>
