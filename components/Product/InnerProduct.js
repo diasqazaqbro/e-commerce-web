@@ -78,7 +78,7 @@ export default function ProductInner({ products, category }) {
 					productsArr={filterProduct}
 				/>
 			</div>
-			<div className='col-md-7 col-12-sm'>
+			<div className='col-md-8 col-12-sm'>
 				<div className='row'>
 					{productsArr?.length > 0 &&
 						productsArr
@@ -89,7 +89,7 @@ export default function ProductInner({ products, category }) {
 									: f.properties.Производитель == currentProperties
 							)
 							.map(product => (
-								<ProductBox col={'4'} key={product._id} {...product} />
+								<ProductBox col={'6'} key={product._id} {...product} />
 							))}
 				</div>
 			</div>

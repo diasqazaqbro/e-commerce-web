@@ -48,7 +48,7 @@ header
 			position: absolute
 			z-index: 999
 			background-color: white
-			width: 30%
+			width: 450px
 			overflow-y: scroll
 			height: 400px
 			padding-top: 20px
@@ -160,23 +160,28 @@ header
 			padding: 25px
 
 .product
-	.card-title
-		margin: 0px
-		font-size: 20px
-		font-family: inherit
-		color: #577f67
-		font-weight: normal
-		font-style: normal
-		text-decoration: none
-	.card-price
-		font-size: 16px
-		color: #444
-		font-weight: normal
-		font-style: normal
-		text-decoration: none
-		font-family: 'Sanchez', serif
-	img
-		height: 200px
+	.card
+		border: 1px solid #577f67
+		.card-title
+			font-size: 20px
+			color: #577f67
+		// color: #444
+			font-weight: 600
+			font-style: normal
+			text-decoration: none
+		.card-price
+			font-size: 18px
+			color: #444
+			font-weight: normal
+			font-style: normal
+			text-decoration: none
+			span
+				font-weight: 500
+				color: #577f67
+		img
+			height: 250px
+		.button-size
+			font-size: 16px
 
 .product__item
 	padding: 50px 0
@@ -190,17 +195,23 @@ header
 		color: #000000
 	.price
 		font-size: 23px
-		font-family: 'Sanchez', serif
 	img
 		width: 400px
 	.info
 		border: 1px solid gray
 	.product-cart
+
+		font-weight: 400
+		.price
+			color: #577f67
+			font-weight: 500
 		.button
 			margin: 10px 15px
-			padding: 2px 10px
+			padding: 0px 7px
 			font-size: 20px
-			font-family: 'Sanchez', serif
+			background-color: white
+			border-color: #577f67
+			color: #577f67
 .filtration
 	select
 		margin: auto
@@ -210,7 +221,12 @@ header
 		text-overflow: ''
 		padding: 5px 10px
 	.item
-
+		h5
+			font-weight: 500
+			font-size: 16px
+			line-height: 1.5
+			text-transform: uppercase
+			color: #577f67
 		.custom-checkbox
 			margin-left: 10px
 			input
@@ -218,24 +234,28 @@ header
 
 			label
 				position: relative
-				font-size: 1.3rem
+				padding-left: 0
+				font-style: normal
+				font-weight: 400
+				font-size: 16px
+				color: #000
 
 			label::after
 				content: ''
-				width: 20px
-				height: 20px
+				width: 15px
+				height: 15px
 				position: absolute
-				border: 2px solid #577F67
-				bottom: 7px
-				left: -25px
+				border: 2px solid #000
+				bottom: 4px
+				left: -22px
 				border-radius: 50%
 				box-shadow: 0px 0px 0px 2px #fff
 
 			input[type=checkbox]:checked + label::before
 				content: ''
 				position: absolute
-				width: 7px
-				height: 18px
+				width: 5px
+				height: 15px
 				border-width: 3px
 				border-top-width: 0
 				border-left-width: 0
@@ -243,8 +263,8 @@ header
 				border-color: #577F67
 				-webkit-transform: rotate(45deg)
 				transform: rotate(42deg)
-				top: 2x
-				left: -17px
+				top: 2px
+				left: -14px
 				z-index: 99
 
 			input[type=checkbox]:checked + label span
@@ -252,21 +272,29 @@ header
 
 .cart
 	.cart-img
-		width: 32px
-		height: 32px
+		width: 50px
+		height: 50px
 		box-shadow: none
 	.name a
 		color: #577f67
 		text-decoration: none
+		.name a::hover
+			text-decoration: underline
 	.button
-		margin: 0 5px
-		padding: 2px 10px
+		margin: 10px 15px
+		padding: 0px 7px
 		font-size: 20px
-		font-family: 'Sanchez', serif
+		background-color: white
+		border-color: #577f67
+		color: #577f67
+	span
+		padding: 0 10px
+		color: #577f67
+		font-weight: 500
 	.total
 		display: flex
 		justify-content: right
-@media (max-width: 880px)
+@media (max-width: 890px)
 	.title
 		font-size: 32px
 	header
@@ -274,8 +302,9 @@ header
 			.logo
 				font-size: 16px
 			.form-control
-				width: 100%
+				width: 200px
 			.list-search
+				width: 200px
 				.link-search
 					img
 						width: 50px
@@ -293,12 +322,16 @@ header
 		.list
 			flex-wrap: wrap
 	.product
-		img
-			height: 100px
-		.card-title
-			font-size: 12px
-		.card-price
-			font-size: 10px
+		.card
+
+			img
+				height: max-content
+			.card-title
+				font-size: 12px
+			.card-price
+				font-size: 10px
+			button
+				font-size: 9px
 	.product__item
 		.titles
 			font-size: 24px

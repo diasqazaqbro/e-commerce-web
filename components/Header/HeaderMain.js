@@ -1,8 +1,8 @@
+import { CartContext } from '@/components/CartContext'
 import axios from 'axios'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
-import { CartContext } from '../CartContext'
 import Search from '../Search/Search'
 
 export default function HeaderMain({ product }) {

@@ -113,9 +113,11 @@ export default function ProductPage({ product }) {
 													>
 														+
 													</button>
-													{cartProducts.filter(id => id === product._id)
-														.length * product.price}{' '}
-													Тг
+													<span className='price'>
+														{cartProducts.filter(id => id === product._id)
+															.length * product.price}{' '}
+														Тг
+													</span>
 													<Link
 														className='btn btn-success d-block'
 														href={'/cart'}

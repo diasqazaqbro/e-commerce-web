@@ -130,7 +130,9 @@ export default function CartPage() {
 											>
 												-
 											</button>
-											{cartProducts.filter(id => id === product._id).length}
+											<span>
+												{cartProducts.filter(id => id === product._id).length}
+											</span>
 											<button
 												className='button'
 												onClick={() => moreOfThisProduct(product._id)}
