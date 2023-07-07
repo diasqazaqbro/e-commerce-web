@@ -1,6 +1,9 @@
 import Link from 'next/link'
+import { useState } from 'react'
 
 export default function Nav() {
+	const [show, setShow] = useState(false)
+	console.log(show)
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-light'>
 			<div className='container'>
@@ -31,37 +34,41 @@ export default function Nav() {
 					aria-expanded='false'
 					aria-label='Toggle navigation'
 				>
-					<span className='navbar-toggler-icon'></span>
+					<span
+						onClick={() => setShow(!show)}
+						className='navbar-toggler-icon'
+					></span>
 				</button>
-				<div className='collapse navbar-collapse' id='navbarSupportedContent'>
-					<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-						<li className='nav-item'>
-							<Link className='nav-link' href='/category/stroller'>
-								Коляски
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link' href='/category/toys'>
-								Игрушки
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link' href='/category/care'>
-								Уход
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link' href='/category/room'>
-								Детская Комната
-							</Link>
-						</li>
-						<li className='nav-item'>
-							<Link className='nav-link' href='/category/cloths'>
-								Одежда
-							</Link>
-						</li>
+				{!show ? (
+					<div className='navbar-collapse'>
+						<ul className='navbar-nav me-auto mb-2 mb-lg-0'>
+							<li className='nav-item'>
+								<Link className='nav-link' href='/category/stroller'>
+									Коляски
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link className='nav-link' href='/category/toys'>
+									Игрушки
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link className='nav-link' href='/category/care'>
+									Уход
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link className='nav-link' href='/category/room'>
+									Детская Комната
+								</Link>
+							</li>
+							<li className='nav-item'>
+								<Link className='nav-link' href='/category/cloths'>
+									Одежда
+								</Link>
+							</li>
 
-						{/* <li className='nav-item dropdown'>
+							{/* <li className='nav-item dropdown'>
 						<Link
 							className='nav-link dropdown-toggle'
 							href='#'
@@ -94,8 +101,11 @@ export default function Nav() {
 						</ul>
 					</li>
 					 */}
-					</ul>
-				</div>
+						</ul>
+					</div>
+				) : (
+					''
+				)}
 			</div>
 		</nav>
 	)
