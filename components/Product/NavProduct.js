@@ -11,6 +11,7 @@ export default function NavProduct({ nav }) {
 					{nav}
 				</li>
 			</ol>
+			<hr />
 		</nav>
 	)
 }

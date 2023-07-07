@@ -59,7 +59,7 @@ export default function CartPage() {
 				<Header />
 				<div className='text-center my-5 py-5'>
 					<h1>Спасибо за покупку</h1>
-					<p>Мы отправим вам на {option} информацию.</p>
+					<p>Мы свяжемся с вами в течение нескольких часов.</p>
 				</div>
 				<Footer />
 			</>
@@ -185,14 +185,17 @@ export default function CartPage() {
 						</div>
 
 						<div className='input-group mb-3'>
-							<input
-								type='text'
-								className='form-control'
-								placeholder='Удобный способ связаться (WhatsApp, Telegram, По звонку)'
+							<select
 								value={option}
 								name='option'
-								onChange={ev => setOption(ev.target.value)}
-							/>
+								onChange={event => setOption(event.target.value)}
+								className='select-profession form-control'
+							>
+								<option disabled>Удобный способ связи</option>
+								<option value={'WhatsApp'}>WhatsApp</option>
+								<option value={'Telegram'}>Telegram</option>
+								<option value={'По звонку'}>По звонку</option>
+							</select>
 							<span className='input-group-text'>|</span>
 							<input
 								type='text'
