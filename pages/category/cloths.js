@@ -9,7 +9,7 @@ export default function Cloths({ products }) {
 	const category = '648be630e0a4fc54af37ee7b'
 	const nav = 'Одежда'
 	useEffect(() => {
-		document.title = `Категория - ${nav} | Tatos.kz`
+		document.title = `Категория - ${nav} | Pegas.kz`
 	}, [])
 	return (
 		<>

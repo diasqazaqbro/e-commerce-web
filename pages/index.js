@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 
 export default function HomePage({ newProducts, settingsSite, product }) {
 	useEffect(() => {
-		document.title = 'Главная страница | Tatos.kz'
+		document.title = 'Главная страница | Pegas.kz'
 	}, [])
 	return (
 		<>

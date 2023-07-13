@@ -9,7 +9,7 @@ export default function Stroller({ products }) {
 	const category = '648be61de0a4fc54af37ee71'
 	const nav = 'Коляски'
 	useEffect(() => {
-		document.title = `Категория - ${nav} | Tatos.kz`
+		document.title = `Категория - ${nav} | Pegas.kz`
 	}, [])
 	return (
 		<>

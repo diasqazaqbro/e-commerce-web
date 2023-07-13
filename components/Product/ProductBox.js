@@ -20,12 +20,13 @@ export default function ProductBox({ _id, title, price, images, col }) {
 						<span>Цена:</span> {price} Тг
 					</div>
 					<div className='d-grid button-size my-2' href={url}>
-						<button
+						<Link
+							href={'/cart'}
 							onClick={() => addProduct(_id)}
 							className='btn my-2 btn-outline-success'
 						>
 							Добавить в корзину
-						</button>
+						</Link>
 					</div>
 				</div>
 			</div>

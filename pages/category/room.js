@@ -9,7 +9,7 @@ export default function Room({ products }) {
 	const nav = 'Комната'
 	const category = '648be635e0a4fc54af37ee7e'
 	useEffect(() => {
-		document.title = `Категория - ${nav} | Tatos.kz`
+		document.title = `Категория - ${nav} | Pegas.kz`
 	}, [])
 	return (
 		<>

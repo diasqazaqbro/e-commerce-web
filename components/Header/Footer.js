@@ -129,7 +129,7 @@ export default function Footer() {
 					<div className='row align-items-center'>
 						<div className='col-lg-6 col-sm-7'>
 							<p className='mb-0 f_400'>
-								© Tatos Inc.. 2023 All rights reserved.
+								© Pegas Inc.. 2023 All rights reserved.
 							</p>
 						</div>
 						<div className='col-lg-6 col-sm-5 text-right'>

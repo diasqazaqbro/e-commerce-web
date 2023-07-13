@@ -13,6 +13,7 @@ export default function Document() {
 					content='7FN78Puq3e56O4oZGxzFzqsOmSZqXYXUt5EvBHaWQmE'
 				/>
 				<meta name='yandex-verification' content='628507053801d86e' /> */}
+				<link rel='shortcut icon' href='/logo.png' type='image/png' />
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no'
@@ -20,11 +21,11 @@ export default function Document() {
 
 				<meta
 					property='og:title'
-					content='Детская одежда в интернет магазине tatos.kz по всем Казахстану❤️'
+					content='Детская одежда в интернет магазине Pegas.kz по всем Казахстану❤️'
 				/>
 
 				<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
-				<title>Tatos.kz - детские товары по всему Казахстану</title>
+				<title>Pegas.kz - детские товары по всему Казахстану</title>
 
 				<meta
 					name='description'

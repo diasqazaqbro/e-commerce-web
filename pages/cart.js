@@ -26,7 +26,7 @@ export default function CartPage() {
 		}
 	}, [cartProducts])
 	useEffect(() => {
-		document.title = 'Корзина товаров | Tatos.kz'
+		document.title = 'Корзина товаров | Pegas.kz'
 	}, [])
 	function moreOfThisProduct(id) {
 		addProduct(id)

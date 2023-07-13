@@ -10,7 +10,7 @@ export default function Care({ products }) {
 	const category = '648be62ae0a4fc54af37ee78'
 	const nav = 'Забота'
 	useEffect(() => {
-		document.title = `Категория - ${nav} | Tatos.kz`
+		document.title = `Категория - ${nav} | Pegas.kz`
 	}, [])
 	return (
 		<>

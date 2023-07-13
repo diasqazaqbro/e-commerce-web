@@ -9,7 +9,7 @@ export default function Toys({ products }) {
 	const nav = 'Игрушки'
 	const category = '648be63ae0a4fc54af37ee81'
 	useEffect(() => {
-		document.title = `Категория - ${nav} | Tatos.kz`
+		document.title = `Категория - ${nav} | Pegas.kz`
 	}, [])
 	return (
 		<>

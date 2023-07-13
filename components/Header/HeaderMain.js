@@ -1,5 +1,6 @@
 import { CartContext } from '@/components/CartContext'
 import axios from 'axios'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext, useEffect, useState } from 'react'
@@ -26,7 +27,9 @@ export default function HeaderMain({ product }) {
 	}
 	return (
 		<div className='header-main pb-3'>
-			<div className='logo'>Tatos.kz</div>
+			<Link href='/'>
+				<Image className='logo' src={'/logo.png'} width={65} height={65} />
+			</Link>
 			{router.asPath === '/' ? (
 				<div className='search'>
 					<Search product={product} />

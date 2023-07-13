@@ -8,7 +8,7 @@ export default function Quest({ settingsSite }) {
 					<div className='col-6'>
 						<h2>Остались вопросы?</h2>
 						<p>
-							Задайте их специалисту TatosKids.kz по телефону горячей линии,
+							Задайте их специалисту PegasShop.kz по телефону горячей линии,
 							закажите звонок или напишите нам.
 						</p>
 					</div>
