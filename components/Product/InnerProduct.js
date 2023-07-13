@@ -5,12 +5,21 @@ import SelectFiltration from './SelectFiltration'
 
 export default function ProductInner({ products, category }) {
 	const filterProduct = products.filter(f => f.category === category)
-	const [currentProperties, setCurrentProperties] = useState(false)
+	const [currentProducer, setCurrentProducer] = useState(false)
+	const [currentColor, setCurrentColor] = useState(false)
+	const [currentSize, setCurrentSize] = useState(false)
 	const [productsArr, setProductsArr] = useState(products)
-	const setProperties = value => {
-		setCurrentProperties(value)
+	const setProducerFc = value => {
+		setCurrentProducer(value)
+	}
+	const setColorFc = value => {
+		setCurrentColor(value)
+	}
+	const setSizeFc = value => {
+		setCurrentSize(value)
 	}
 
+	// console.log(filterProduct)
 	const [selectedSort, setSelectedSort] = useState('')
 	const sortPosts = sort => {
 		setSelectedSort(sort)
@@ -56,6 +65,7 @@ export default function ProductInner({ products, category }) {
 			setProductsArr([...productsArr].reverse())
 		}
 	}
+
 	return (
 		<div className='row'>
 			<div className='col-md-4 col-sm-12 filtration'>
@@ -71,7 +81,9 @@ export default function ProductInner({ products, category }) {
 					]}
 				/>
 				<FiltrationProduct
-					setProperties={setProperties}
+					setProducerFc={setProducerFc}
+					setColorFc={setColorFc}
+					setSizeFc={setSizeFc}
 					categoryProps={category}
 					productsArr={filterProduct}
 				/>
@@ -82,9 +94,15 @@ export default function ProductInner({ products, category }) {
 						productsArr
 							.filter(f => f.category === category)
 							.filter(f =>
-								!currentProperties
+								!currentProducer
 									? f
-									: f.properties.Производитель == currentProperties
+									: f.properties.Производитель == currentProducer
+							)
+							.filter(f =>
+								!currentColor ? f : f.properties.Цвет == currentColor
+							)
+							.filter(f =>
+								!currentSize ? f : f.properties.Размер == currentSize
 							)
 							.map(product => (
 								<ProductBox col={'6'} key={product._id} {...product} />
