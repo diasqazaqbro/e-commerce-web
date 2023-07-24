@@ -10,7 +10,7 @@ export default function ProductBox({ _id, title, price, images, col }) {
 			<div className='card'>
 				<div className='card-body text-center'>
 					<Link href={url}>
-						<img className='card-img-top' src={images?.[0]} alt='' />
+						<img src={images?.[0]} alt='' />
 					</Link>
 					<hr />
 					<Link className='card-title mt-5' href={url}>
