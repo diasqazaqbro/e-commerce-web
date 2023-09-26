@@ -37,6 +37,8 @@ export default function Document() {
 					integrity='sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC'
 					crossorigin='anonymous'
 				/>
+				<meta name='theme-color' content='#fff' />
+				<link rel='manifest' href='/manifest.json' />
 			</Head>
 			<body>
 				<Main />
