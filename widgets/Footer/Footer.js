@@ -36,7 +36,7 @@ export default function Footer() {
 								</ul>
 							</div>
 						</div>
-						<div className='col-lg-4 col-md-6'>
+						<div className='col-lаg-4 col-md-6'>
 							<div
 								className='f_widget about-widget pl_70 wow fadeInLeft'
 								data-wow-delay='0.6s'

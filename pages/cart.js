@@ -1,6 +1,7 @@
-import { CartContext } from '@/components/CartContext'
-import Footer from '@/components/Header/Footer'
-import Header from '@/components/Header/Header'
+import { CartContext } from '@/entities/CartContext'
+import Footer from '@/widgets/Footer/Footer'
+import Header from '@/widgets/Header/Header'
+import { Breadcrumb } from 'antd'
 import axios from 'axios'
 import Link from 'next/link'
 import { useContext, useEffect, useState } from 'react'
@@ -78,20 +79,7 @@ export default function CartPage() {
 		<>
 			<Header />
 			<div className='container'>
-				<nav
-					style={{ '--bs-breadcrumb-divider': "'>';" }}
-					aria-label='breadcrumb'
-					className='my-4'
-				>
-					<ol className='breadcrumb'>
-						<li className='breadcrumb-item'>
-							<Link href='/'>Главная страница</Link>
-						</li>
-						<li className='breadcrumb-item active' aria-current='page'>
-							Корзина
-						</li>
-					</ol>
-				</nav>
+				<Breadcrumb nav={'Корзина'} />
 				<h1 className='title'>Корзина товаров</h1>
 
 				{!cartProducts?.length && (

@@ -1,5 +1,5 @@
-import Footer from '@/components/Header/Footer'
-import Header from '@/components/Header/Header'
+import Footer from '@/widgets/Footer/Footer'
+import Header from '@/widgets/Header/Header'
 
 export default function About() {
 	return (

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-export default function NavProduct({ nav }) {
+const Breadcrumb = ({ nav }) => {
 	return (
 		<nav style={{ '--bs-breadcrumb-divider': "'>';" }} aria-label='breadcrumb'>
 			<ol className='breadcrumb'>
@@ -15,3 +15,5 @@ export default function NavProduct({ nav }) {
 		</nav>
 	)
 }
+
+export default Breadcrumb

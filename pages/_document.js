@@ -8,11 +8,6 @@ export default function Document() {
 				<meta property='og:type' content='website' />
 				<meta property='og:locale' content='ru_RU' />
 				<meta property='og:site_name' content='tatos' />
-				{/* <meta
-					name='google-site-verification'
-					content='7FN78Puq3e56O4oZGxzFzqsOmSZqXYXUt5EvBHaWQmE'
-				/>
-				<meta name='yandex-verification' content='628507053801d86e' /> */}
 				<link rel='shortcut icon' href='/logo.png' type='image/png' />
 				<meta
 					name='viewport'

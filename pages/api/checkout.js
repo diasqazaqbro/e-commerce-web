@@ -1,6 +1,6 @@
-import { mongooseConnect } from '@/lib/mongoose'
-import { Order } from '@/models/Order'
-import { Product } from '@/models/Product'
+import { Order } from '@/entities/models/Order'
+import { Product } from '@/entities/models/Product'
+import { mongooseConnect } from '@/shared/lib/mongoose'
 
 export default async function handler(req, res) {
 	if (req.method !== 'POST') {

@@ -1,4 +1,4 @@
-import ItemSearch from './ItemSearch'
+import ItemSearch from '../../shared/UI/ItemSearch'
 
 const ListSearch = ({ productList }) => {
 	console.log(productList)

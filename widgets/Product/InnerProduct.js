@@ -1,25 +1,10 @@
 import { useState } from 'react'
-import FiltrationProduct from './FiltrationProduct'
+import SelectFiltration from '../../features/SelectFiltration/SelectFiltration'
 import ProductBox from './ProductBox'
-import SelectFiltration from './SelectFiltration'
 
 export default function ProductInner({ products, category }) {
-	const filterProduct = products.filter(f => f.category === category)
-	const [currentProducer, setCurrentProducer] = useState(false)
-	const [currentColor, setCurrentColor] = useState(false)
-	const [currentSize, setCurrentSize] = useState(false)
 	const [productsArr, setProductsArr] = useState(products)
-	const setProducerFc = value => {
-		setCurrentProducer(value)
-	}
-	const setColorFc = value => {
-		setCurrentColor(value)
-	}
-	const setSizeFc = value => {
-		setCurrentSize(value)
-	}
 
-	// console.log(filterProduct)
 	const [selectedSort, setSelectedSort] = useState('')
 	const sortPosts = sort => {
 		setSelectedSort(sort)
@@ -80,30 +65,12 @@ export default function ProductInner({ products, category }) {
 						{ value: 'createdAt', name: 'По дате' },
 					]}
 				/>
-				<FiltrationProduct
-					setProducerFc={setProducerFc}
-					setColorFc={setColorFc}
-					setSizeFc={setSizeFc}
-					categoryProps={category}
-					productsArr={filterProduct}
-				/>
 			</div>
 			<div className='col-md-8 col-12-sm'>
 				<div className='row'>
 					{productsArr?.length > 0 &&
 						productsArr
 							.filter(f => f.category === category)
-							.filter(f =>
-								!currentProducer
-									? f
-									: f.properties.Производитель == currentProducer
-							)
-							.filter(f =>
-								!currentColor ? f : f.properties.Цвет == currentColor
-							)
-							.filter(f =>
-								!currentSize ? f : f.properties.Размер == currentSize
-							)
 							.map(product => (
 								<ProductBox col={'6'} key={product._id} {...product} />
 							))}

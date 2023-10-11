@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { useContext } from 'react'
-import { CartContext } from '../CartContext'
+import { CartContext } from '../../entities/CartContext'
 export default function ProductBox({ _id, title, price, images, col }) {
 	const url = '/product/' + _id
 	const { cartProducts, addProduct, removeProduct, clearCart } =

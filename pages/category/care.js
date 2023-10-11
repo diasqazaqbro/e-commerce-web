@@ -1,9 +1,9 @@
-import Footer from '@/components/Header/Footer'
-import Header from '@/components/Header/Header'
-import ProductInner from '@/components/Product/InnerProduct'
-import NavProduct from '@/components/Product/NavProduct'
-import { mongooseConnect } from '@/lib/mongoose'
-import { Product } from '@/models/Product'
+import { Product } from '@/entities/models/Product'
+import NavProduct from '@/shared/UI/Breadcrumb'
+import { mongooseConnect } from '@/shared/lib/mongoose'
+import Footer from '@/widgets/Footer/Footer'
+import Header from '@/widgets/Header/Header'
+import ProductInner from '@/widgets/Product/InnerProduct'
 import { useEffect } from 'react'
 
 export default function Care({ products }) {
